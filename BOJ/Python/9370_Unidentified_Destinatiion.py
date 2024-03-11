@@ -53,7 +53,7 @@ if __name__ == "__main__":
             
         # 다익스트라 (2->1, 3) and (1 -> 5,6 ... and 3 -> 5,6..)
         distance_lst = dijkstra(s) # 출발지에서 검색
-        
+
         fst_cost = distance_lst[g] # 2 -> 1
         sec_cost = distance_lst[h] # 2 -> 3
         
