@@ -10,20 +10,19 @@ def dfs(y, x):
     if x == C-1:
         return True # 도착
 
-    if 0 <= y < R and 0 <= x < C:
-        if board[y][x] != "x" and visited[y][x] == 0:
-            visited[y][x] = 1
-            
-            if dfs(y, x-1):
-                return True
-            if dfs(y, x):
-                return True
-            if dfs(y, x+1):
-                return True
+    dy = [-1, 0, 1]
+    for i in range(3):
+        ddx = x+1
+        ddy = y + dy[i]
+        if 0 <= ddy < R and 0 <= ddx < C:
+            if board[ddy][ddx] != "x" and visited[ddy][ddx] == 0:
+                visited[ddy][ddx] = 1
+                
+                if dfs(ddy, ddx):
+                    return True
                             
     return False
 
-    
 answer = 0
 for i in range(R):
     if dfs(i, 0):
