@@ -68,6 +68,8 @@ if __name__ == "__main__":
             
         
         movement = movement_process() # 이동 했는지 안했는지 여부, 안했으면 여기서 끝남
-            
-    print(count)
+        
         # print(countrys)
+        
+    print(count)
+2
