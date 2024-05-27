@@ -6,35 +6,24 @@ class ListNode:
         self.next = next
 
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        
-        st = []
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        fast, slow = head, head
+        for _ in range(n): 
+            fast = fast.next
 
-        while head:
-            st.append(head.val)
-            head = head.next
+        if not fast: 
+            return head.next
 
-        cnt = 1
-        # newNode = ListNode()
-
-        def bt(newNode, cnt):
+        while fast.next: 
+            fast, slow = fast.next, slow.next
             
-            if cnt == n:
-                st.pop()
-                return bt(newNode, cnt+1)
-            
-            if st:
-                tempNode = ListNode(st.pop(), newNode)
-                return bt(tempNode, cnt+1)
-
-            return newNode
-        
-        return bt(None, cnt)
+        slow.next = slow.next.next
+        return head
 
 s = Solution()
-# head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5, None)))))
-head = ListNode(1, None)
-head_01 = s.removeNthFromEnd(head, 1)
+head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5, None)))))
+# head = ListNode(1, None)
+head_01 = s.removeNthFromEnd(head, 2)
 
 while head_01:
     print(head_01.val)
