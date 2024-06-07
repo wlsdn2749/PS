@@ -31,7 +31,5 @@ class Solution:
             temp += f"{count}{cur}"
             self.rle.append(temp)
             
-        
-        
 s = Solution()
 print( s.countAndSay(4) )
