@@ -1,34 +1,27 @@
-from collections import deque
+from collections import deque, OrderedDict
 
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.cache = {}        
-        self.last_used = deque()
+        self.cache = OrderedDict()    
         self.capacity = capacity
 
     def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
         
-        if (item := self.cache.get(key, -1)) >= 0:
-            self.last_used.append(key)
-            
-        return item
+        # 접근한 항목을 가장 최근에 사용된 위치로 이동
+        self.cache.move_to_end(key)
+        return self.cache[key]
     
     def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.cache.move_to_end(key)
+        elif len(self.cache) >= self.capacity:
+            self.cache.popitem(last=False)
+            
+        self.cache[key] = value
           
-        if self.cache.get(key):
-            self.cache[key] = value       
-        elif self.capacity > len(self.cache): 
-            self.cache[key] = value
-        else:
-            while len(self.last_used) != self.capacity:
-                self.last_used.popleft()
-                
-            del self.cache[self.last_used.popleft()] # evicts
-            self.cache[key] = value
-        
-        print(self.cache)
-        self.last_used.append(key)    
             
 
 
