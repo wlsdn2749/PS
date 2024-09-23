@@ -19,7 +19,6 @@ class Solution:
             return valid(node.left, minimum, node.val) and valid(node.right, node.val, maximum)
         
         return valid(root, float('-inf'), float('inf'))
-
             
 s = Solution()
 root = TreeNode(2, TreeNode(1), TreeNode(3))
