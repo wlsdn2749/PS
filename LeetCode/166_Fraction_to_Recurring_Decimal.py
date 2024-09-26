@@ -28,7 +28,6 @@ class Solution:
             if remainder in remainder_index:
                 repeating = True
                 start_index = remainder_index[remainder]
-                print(remainder, last_index, remainder_index)
                 break
             
             remainder_index[remainder] = last_index
